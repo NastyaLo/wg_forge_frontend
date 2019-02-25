@@ -1,5 +1,6 @@
-// this is an example of improting data from JSON
-// import 'orders' from '../data/orders.json';
+// importing handling functions
+import formattingDate from './dataHandling/formattingDate';
+import cardNumberFormatter from './dataHandling/formattingDate';
 
 // Loading jsons
 const orders = require('../data/orders.json');
@@ -46,31 +47,6 @@ ordersHeader.appendChild(ordersHeaderRow);
 
 // Inseting <thead> to table
 ordersTable.appendChild(ordersHeader);
-
-// Format time from ms to DD/MM/YYYY hh:mm:ss
-function formattingDate(ms) {
-    const date = new Date(ms);
-
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-
-    const hour = date.getHours();
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
-
-    return `${day > 9 ? day : `0${day}` }/${month > 9 ? month : `0${month}`}/${year} ${hour > 9 ? hour : `0${hour}`}:${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`;
-}
-
-function cardNumberFormatter(cardNumber) {
-    const starsAmount = cardNumber.length - 6;
-
-    let resultStr = cardNumber.slice(0, 2);
-    for (let i = 0; i < starsAmount; i++) resultStr += '*'
-    resultStr += cardNumber.slice(cardNumber.length - 4);
-
-    return resultStr;
-}
 
 function getUserInfo(userId) {
     const link = document.createElement('a');
