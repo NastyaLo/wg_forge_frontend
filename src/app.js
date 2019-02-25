@@ -62,6 +62,16 @@ function formattingDate(ms) {
     return `${day > 9 ? day : `0${day}` }/${month > 9 ? month : `0${month}`}/${year} ${hour > 9 ? hour : `0${hour}`}:${minutes > 9 ? minutes : `0${minutes}`}:${seconds > 9 ? seconds : `0${seconds}`}`;
 }
 
+function cardNumberFormatter(cardNumber) {
+    const starsAmount = cardNumber.length - 6;
+
+    let resultStr = cardNumber.slice(0, 2);
+    for (let i = 0; i < starsAmount; i++) resultStr += '*'
+    resultStr += cardNumber.slice(cardNumber.length - 4);
+
+    return resultStr;
+}
+
 // Creating orders rows
 orders.forEach((order) => {
     // Creating row element
@@ -84,7 +94,7 @@ orders.forEach((order) => {
     userInfo.innerText = order.user_id;
     orderDate.innerText = formattingDate(Number(order.created_at));
     orderAmount.innerText = order.total;
-    cardNumber.innerText = order.card_number;
+    cardNumber.innerText = cardNumberFormatter(String(order.card_number));
     cardType.innerHTML = order.card_type;
     location.innerHTML = order.order_country + order.order_ip;
 
