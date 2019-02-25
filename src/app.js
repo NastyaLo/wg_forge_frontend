@@ -93,10 +93,10 @@ orders.forEach((order) => {
     transactionId.innerText = order.transaction_id;
     userInfo.innerText = order.user_id;
     orderDate.innerText = formattingDate(Number(order.created_at));
-    orderAmount.innerText = order.total;
+    orderAmount.innerText = `$${order.total}`;
     cardNumber.innerText = cardNumberFormatter(String(order.card_number));
     cardType.innerHTML = order.card_type;
-    location.innerHTML = order.order_country + order.order_ip;
+    location.innerHTML = `${order.order_country} (${order.order_ip})`;
 
     // Inserting order columns into order row
     orderRow.appendChild(transactionId);
