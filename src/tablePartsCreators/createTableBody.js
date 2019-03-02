@@ -1,10 +1,12 @@
 // importing handling functions
-import formattingDate from '../dataHandling/formattingDate';
 import cardNumberFormatter from '../dataHandling/cardNumberFormatter';
 import getUserInfo from '../dataHandling/getUserInfo';
 
 // Loading jsons
 const orders = require('../../data/orders.json');
+
+//
+const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'};
 
 // Creating orders rows
 function createTableBody() {
@@ -28,7 +30,7 @@ function createTableBody() {
     
         // Setting info to order columns
         transactionId.innerText = order.transaction_id;
-        orderDate.innerText = formattingDate(Number(order.created_at));
+        orderDate.innerText = (new Date(Number(order.created_at))).toLocaleString('en', dateOptions);
         orderAmount.innerText = `$${order.total}`;
         cardNumber.innerText = cardNumberFormatter(String(order.card_number));
         cardType.innerText = order.card_type;
