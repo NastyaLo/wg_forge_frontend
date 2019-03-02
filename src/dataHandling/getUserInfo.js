@@ -2,6 +2,8 @@
 const users = require('../../data/users.json');
 const companies = require('../../data/companies.json');
 
+import toggleUserDetails from '../functions/toggleUserDetails';
+
 const dateOptions = { year: 'numeric', month: '2-digit', day: '2-digit'};
 
 function getUserInfo(userId) {
@@ -20,11 +22,12 @@ function getUserInfo(userId) {
     let companyId;
 
 
-    userLink.setAttribute('href', '#');
+    userLink.setAttribute('href', `#`);
+    div.setAttribute('id', userId);
     div.classList.add('user-details');
     img.style.width = '100px';
 
-
+    userLink.addEventListener('click', () => { toggleUserDetails(userId) }, false);
 
     users.forEach((user) => {
         if (user.id === userId) {
@@ -40,6 +43,7 @@ function getUserInfo(userId) {
                     if (companyItem.id === companyId) {
                         companyL.innerText = companyItem.title;
                         companyL.setAttribute('href', companyItem.url);
+                        companyL.setAttribute('target', '_blank');
                         industry.innerText = `Industry: ${companyItem.industry}`;
 
                         company.innerText = 'Company: ';
