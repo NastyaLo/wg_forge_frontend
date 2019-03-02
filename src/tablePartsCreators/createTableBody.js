@@ -19,7 +19,7 @@ function createTableBody() {
     
         // Creating order columns elements
         const transactionId = document.createElement('td');
-        const userInfo = document.createElement('td');
+        const userInfo = getUserInfo(order.user_id);
         const orderDate = document.createElement('td');
         const orderAmount = document.createElement('td');
         const cardNumber = document.createElement('td');
@@ -28,7 +28,6 @@ function createTableBody() {
     
         // Setting info to order columns
         transactionId.innerText = order.transaction_id;
-        userInfo.appendChild(getUserInfo(order.user_id));
         orderDate.innerText = formattingDate(Number(order.created_at));
         orderAmount.innerText = `$${order.total}`;
         cardNumber.innerText = cardNumberFormatter(String(order.card_number));
